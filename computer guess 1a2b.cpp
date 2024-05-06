@@ -2,10 +2,11 @@
 #include <cstdlib> 
 #include <ctime>
 using namespace std;
-int main() {
+int all_num[3050][10], many = 0;;
+bool possible[3050];
+
+void init() {
 	srand(time(NULL));
-	int all_num[3050][10], many = 0;;
-	bool possible[3050];
 	for(int i = 1; i < 10; i++) {
 		for(int j = 1; j < 10; j++) {
 			for(int k = 1; k < 10; k++) {
@@ -22,10 +23,28 @@ int main() {
 			}
 		}
 	}
+}
+
+bool valid(string s) {
+	if(s[0] <= '9' && s[0] >= '0' && (s[1] == 'a' || s[1] == 'A') && s[2] <= '9' && s[2] >= '0' && (s[3] == 'b' || s[3] == 'B')) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+int main() {
+	init();
 	int games = 1;
 	while(true) {
+		many = 3024;
+		for(int i = 0; i < 3024; i++) {
+			possible[i] = true;
+		}
 		cout << "games no." << games << '\n';
 		games++;
+		bool ok = true;
 		for(int i = 1; ; i++) {
 			cout << i << '\n';
 			int guess_num = rand() % many;
@@ -40,9 +59,13 @@ int main() {
 			cout << '\n';
 			string reply;
 			cin >> reply;
+			while(!valid(reply)) {
+				cout << "Reply is unvalid.\n" << "please try again\n";
+				cin >> reply;
+			}
 			int a = reply[0] - '0', b = reply[2] - '0';
 			if(a == 4) {
-				cout << "I got it ouo!\n";
+				cout << "I got it!\n";
 				break;
 			}
 			for(int j = 0; j < 3024; j++) {
@@ -65,12 +88,20 @@ int main() {
 					}
 				}
 			}
+			if(many == 0) {
+				cout << "No possible answer.\n";
+				break;
+			}
 		}
-		cout << "again?(Y/N)\n";
+		cout << "restart?(Y/N)\n";
 		char yn;
 		cin >> yn;
-		if(yn == 'N') {
+		if(yn == 'N' || yn == 'n') {
 			break;
+		}
+		while(yn != 'Y' && yn != 'y' && yn != 'N' && yn != 'n') {
+			 cout << "plese type in Y or N\n";
+			 cin >> yn;
 		}
 	}
 	return 0;

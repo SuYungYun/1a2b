@@ -3,7 +3,9 @@
 #include <ctime>
 using namespace std;
 int main() {
-	cout << "規則:\nn個數字正確且位置正確 = nA\nm個數字正確但位置錯誤 = mB\n\n數字不重複，沒有0\n7次猜不到答案則失敗。\n\n"; 
+	cout << "If there are n correct numbers and their place are correct too, you will get 'nA'\n";
+	cout << "If there are m correct numbers but thier place are wrong, you will get 'mB'.\n";
+	cout << "You will lose after 7 wrong answer.\n";
 	srand(time(NULL));
 	int x = rand() % 3024;
 	
@@ -28,7 +30,7 @@ int main() {
 	}
 	int ok = 0;
 	for(int i = 0; i < 7; i++) {
-		cout << "請輸入\n";
+		cout << "please type in:\n";
 		string s;
 		cin >> s;
 		for(int j = 0; j < 4; j++) {
@@ -46,7 +48,7 @@ int main() {
 			}
 		}
 		if(a == 4) {
-			cout << "恭喜!!猜對了OuOb\n";
+			cout << "Congratulations!\n";
 			ok++;
 			break;
 		}
@@ -55,7 +57,7 @@ int main() {
 		}
 	}
 	if(ok == 0) {
-		cout << "你輸了OnOq\n正確答案為: ";
+		cout << "You losed.\nThe correct answer is ";
 		for(int i = 0; i < 4; i++) {
 			cout << ans[x][i];
 		}
