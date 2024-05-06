@@ -2,6 +2,35 @@
 #include <cstdlib>
 #include <ctime>
 using namespace std;
+
+bool not_same(char a, char b, char c, char d) {
+	if(a != b && b != c && c != d && d != a && a != c && b != d) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool valid(string s) {
+	bool ok = true;
+	if(s.size() != 4) {
+		ok = false;
+	}
+	else if(!not_same(s[0], s[1], s[2], s[3])) {
+		ok = false;
+	}
+	else { 
+		for(int i = 0; i < 4; i++) { 
+			if(s[i] >= '9' || s[i] <= '0') {
+				ok = false;
+				break;
+			}
+		}
+	}
+	return ok;
+}
+
 int main() {
 	cout << "If there are n correct numbers and their place are correct too, you will get 'nA'\n";
 	cout << "If there are m correct numbers but thier place are wrong, you will get 'mB'.\n";
@@ -14,16 +43,13 @@ int main() {
 		for(int j = 1; j < 10; j++) {
 			for(int k = 1; k < 10; k++) {
 				for(int m = 1; m < 10; m++) {
-					if(i == j || j == k || k == m || m == i || j == m || k == i) {
-						continue;
-					}
-					else {
+					if(not_same(i, j, k, m)) {
 						ans[num][0] = i;
 						ans[num][1] = j;
 						ans[num][2] = k;
 						ans[num][3] = m;
 						num++;
-					}
+					}		
 				}
 			}
 		}
@@ -32,7 +58,11 @@ int main() {
 	for(int i = 0; i < 7; i++) {
 		cout << "please type in:\n";
 		string s;
-		cin >> s;
+		getline(cin,s);
+		while(!valid(s)) {
+			cout << "please type in valid number\n";
+			getline(cin,s);
+		}
 		for(int j = 0; j < 4; j++) {
 			s[j] -= '0';
 		}

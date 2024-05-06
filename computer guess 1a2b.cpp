@@ -26,7 +26,10 @@ void init() {
 }
 
 bool valid(string s) {
-	if(s[0] <= '9' && s[0] >= '0' && (s[1] == 'a' || s[1] == 'A') && s[2] <= '9' && s[2] >= '0' && (s[3] == 'b' || s[3] == 'B')) {
+	if(s.size() != 4) {
+		return false;
+	}
+	else if(s[0] <= '9' && s[0] >= '0' && (s[1] == 'a' || s[1] == 'A') && s[2] <= '9' && s[2] >= '0' && (s[3] == 'b' || s[3] == 'B')) {
 		return true;
 	}
 	else {
@@ -58,10 +61,10 @@ int main() {
 			}
 			cout << '\n';
 			string reply;
-			cin >> reply;
+			getline(cin,reply);
 			while(!valid(reply)) {
 				cout << "Reply is unvalid.\n" << "please try again\n";
-				cin >> reply;
+				getline(cin,reply);
 			}
 			int a = reply[0] - '0', b = reply[2] - '0';
 			if(a == 4) {
