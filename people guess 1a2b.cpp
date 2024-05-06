@@ -3,7 +3,7 @@
 #include <ctime>
 using namespace std;
 
-bool not_same(char a, char b, char c, char d) {
+bool not_same(int a, int b, int c, int d) {
 	if(a != b && b != c && c != d && d != a && a != c && b != d) {
 		return true;
 	}
@@ -22,7 +22,7 @@ bool valid(string s) {
 	}
 	else { 
 		for(int i = 0; i < 4; i++) { 
-			if(s[i] >= '9' || s[i] <= '0') {
+			if(s[i] > '9' || s[i] < '1') {
 				ok = false;
 				break;
 			}
@@ -60,7 +60,7 @@ int main() {
 		string s;
 		getline(cin,s);
 		while(!valid(s)) {
-			cout << "please type in valid number\n";
+			cout << "please type in  a valid number\n";
 			getline(cin,s);
 		}
 		for(int j = 0; j < 4; j++) {
