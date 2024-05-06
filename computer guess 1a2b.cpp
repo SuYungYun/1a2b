@@ -51,7 +51,7 @@ int main() {
 		for(int i = 1; ; i++) {
 			cout << i << '\n';
 			int guess_num = rand() % many;
-			for(int j = 0; j < guess_num; j++) {
+			for(int j = 0; j <= guess_num; j++) {
 				if(possible[j] == false) {
 					guess_num++;
 				}
@@ -60,6 +60,7 @@ int main() {
 				cout << all_num[guess_num][j];
 			}
 			cout << '\n';
+			cout << many << '\n';
 			string reply;
 			getline(cin,reply);
 			while(!valid(reply)) {

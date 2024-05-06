@@ -112,7 +112,7 @@ int main() {
 			}
 			
 			int guess_num = rand() % many;
-			for(int j = 0; j < guess_num; j++) {
+			for(int j = 0; j <= guess_num; j++) {
 				if(possible[j] == false) {
 					guess_num++;
 				}
