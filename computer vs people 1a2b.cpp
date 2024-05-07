@@ -82,7 +82,7 @@ int main() {
 		}
 		while(true) {
 			
-			cout << "please type in:\n";
+			cout << "please type in a number:\n";
 			string s;
 			getline(cin,s);
 			while(!num_valid(s)) {
@@ -133,6 +133,7 @@ int main() {
 				for(int i = 0 ; i < 4; i++) {
 					cout << ans[i];
 				}
+				cout << '\n';
 				break;
 			}
 			for(int j = 0; j < 3024; j++) {
